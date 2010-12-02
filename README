@@ -1,0 +1,5 @@
+Scheduler
+=========
+
+A simple application written using Sinatra to help schedule
+the mass spectrometer.
