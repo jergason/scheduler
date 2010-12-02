@@ -1,7 +1,7 @@
 require 'sinatra'
 
 get "/scheduler" do
-  "Hello world!"
+  haml :scheduler
 end
 
 post "/scheduler" do
