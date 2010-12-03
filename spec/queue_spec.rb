@@ -26,11 +26,18 @@ describe "Scheduler::Queue" do
   end
 
   describe "saving" do
+    it "should save the yaml file correctly" do
+      @queue = Scheduler::Queue.new("spec/save.yaml")
+      @queue << { :stuff => "sundries" } << { :foo => "bar" }
+      @queue.save
+      Scheduler::Queue.new("spec/save.yaml").count.should == 2
+      File.delete("spec/save.yaml")
+    end
   end
 
   describe "other methods" do
     before do
-      @queue = Scheduler::Queue.new("test.yaml")
+      @queue = Scheduler::Queue.new("spec/test.yaml")
     end
 
     describe "each_with_index" do

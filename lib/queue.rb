@@ -16,10 +16,12 @@ module Scheduler
 
     def save
       open(@queue_location, "w") { |f| YAML.dump(@data, f) }
+      self
     end
 
     def <<(arg)
       @data << arg
+      self
     end
 
     def delete(index)
