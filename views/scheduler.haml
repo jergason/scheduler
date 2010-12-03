@@ -3,8 +3,12 @@
   #signup_form
     %form{ :action => '\scheduler', :method => 'POST' }
       #name
+        Name
+        %br
         %input{ :type => 'text', :name => 'name', :value => @name }
       #email
+        Email
+        %br
         %input{ :type => 'text', :name => 'email', :value => @email }
       #submit
         %input{ :type => 'submit' }
