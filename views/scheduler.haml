@@ -1,6 +1,13 @@
 #signup
   %h2 Sign up to use the mass spec
   #signup_form
-    %p
-      Some stuff and sundries
-    
+    %form{ :action => '\scheduler', :method => 'POST' }
+      #name
+        %input{ :type => 'text', :name => 'name', :value => @name }
+      #email
+        %input{ :type => 'text', :name => 'email', :value => @email }
+      #submit
+        %input{ :type => 'submit' }
+
+  - if @success
+    %h3.success Submission successfully saved.

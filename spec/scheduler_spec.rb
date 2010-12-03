@@ -22,6 +22,11 @@ describe "Scheduler" do
       get "/scheduler"
       last_response.body.should =~ /Sign up to use the mass spec/
     end
+
+    it "should show a form" do
+      get "/scheduler"
+      last_response.body.should =~ /<form/
+    end
   end
 
   describe "/" do

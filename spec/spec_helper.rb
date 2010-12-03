@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), "..", "scheduler.rb")
+require File.join(File.dirname(__FILE__), "..", "app.rb")
 
 require 'rack/test'
 require 'rspec'
