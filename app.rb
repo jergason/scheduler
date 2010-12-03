@@ -1,17 +1,10 @@
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "lib"))
 require "sinatra"
-require "configuration"
 require "queue"
 require "pony"
+require "config/settings"
 
-# Edit configuration settings here
-config = Scheduler::Configuration.new
-config.notification_email_address = "change-me@exmaple.com"
-config.email_sender = "scheduler@example.com"
-config.queue_location = "queue.yaml"
-config.calendar_html = "<foo>bahldlksjf</foo>"
-
-$queue = Scheduler::Queue.new(config.queue_location)
+$queue = Scheduler::Queue.new(settings.queue_location)
 
 # Routes
 get "/" do
@@ -28,8 +21,8 @@ post "/scheduler" do
   $queue << { :name => @name, :email => @email }
   $queue.save
 
-  Pony.mail( :to => config.notification_email_address,
-             :from => config.email_sender,
+  Pony.mail( :to => settings.notification_email_address,
+             :from => settings.email_sender,
              :subject => "New Signup for Orbitrap",
              :body => <<-EOF
   New signup for the Orbitrap from #{params[:name]}, email: #{params[:email]}.
@@ -52,6 +45,6 @@ delete "/queue" do
 end
 
 get "/calendar" do
-  @calendar = config.calendar_html
+  @calendar = settings.calendar_html
   haml :calendar
 end
