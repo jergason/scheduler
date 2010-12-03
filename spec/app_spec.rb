@@ -30,14 +30,18 @@ describe "Scheduler" do
   end
 
   describe "/" do
-    it "should be successful" do
+    it "should redirect to /scheduler" do
       get "/"
-      last_response.should be_ok
+      last_response.status.should == 302
     end
+  end
 
-    it "says hello" do
-      get '/'
-      last_response.body.should == "Hello!"
+  describe "/queue" do
+    describe "get" do
+      it "should be successful" do
+        get "/queue"
+        last_response.should be_ok
+      end
     end
   end
 end
