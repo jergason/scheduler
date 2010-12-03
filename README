@@ -1,5 +1,31 @@
 Scheduler
 =========
 
-A simple application written using Sinatra to help schedule
-the mass spectrometer.
+A simple little Sinatra app for the Prince Lab to help
+schedule the mass spectrometer. It is pretty ghetto, but
+it is good enough for what it will be used for.
+
+
+Installation Instructions
+=========================
+
+Developed on Mac OS X using Ruby 1.9.2, Sinatra 1.1.0, and RSpec 2.2.0.
+
+Grab it from Github, and install the dependencies:
+
+[source, shell]
+$ git clone git://github.com/jergason/scheduler.git
+$ cd scheduler
+$ bundle install
+
+
+You should be good to go. You can test it out by running
+
+[source, shell]
+$ ruby app.rb
+
+and then visiting http://localhost:4567 in your browser.
+
+
+The configurations are currently just stored in the app.rb file, so edith them to
+match your system. They should work by default, except for the email address.
