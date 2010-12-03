@@ -13,7 +13,6 @@ Developed on Mac OS X using Ruby 1.9.2, Sinatra 1.1.0, and RSpec 2.2.0.
 
 Grab it from Github, and install the dependencies:
 
-[source, shell]
 $ git clone git://github.com/jergason/scheduler.git
 $ cd scheduler
 $ bundle install
@@ -21,7 +20,6 @@ $ bundle install
 
 You should be good to go. You can test it out by running
 
-[source, shell]
 $ ruby app.rb
 
 and then visiting http://localhost:4567 in your browser.
