@@ -1,4 +1,5 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "lib"))
 require "sinatra"
 require "queue"
 require "pony"
@@ -16,8 +17,6 @@ get "/scheduler" do
 end
 
 post "/scheduler" do
-  @name = params[:name]
-  @email = params[:email]
   $queue << { :name => @name, :email => @email }
   $queue.save
 

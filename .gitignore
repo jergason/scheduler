@@ -2,3 +2,4 @@
 .DS_Store
 .bundle
 queue.yaml
+.sass-cache
