@@ -1,8 +1,10 @@
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "lib"))
+require "sinatra"
+require './init.rb'
 
-require 'sinatra'
 
-Submission = Struct.new(:name, :email)
+get "/" do
+  redirect "/scheduler"
+end
 
 get "/scheduler" do
   haml :scheduler
@@ -18,12 +20,17 @@ post "/scheduler" do
   haml :scheduler
 end
 
-get "/" do
-  "Hello!"
-end
-
 get "/queue" do
   #load the queue
   $queue = load_queue
   #show the queue list
+end
+
+# Delete the selected queue item
+delete "/queue" do
+
+end
+
+get "/calendar" do
+  haml :calendar
 end
