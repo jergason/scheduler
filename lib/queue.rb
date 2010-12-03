@@ -31,5 +31,9 @@ module Scheduler
         yield i
       end
     end
+
+    def count
+      @data.count
+    end
   end
 end
