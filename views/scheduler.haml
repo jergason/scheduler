@@ -1,17 +1,59 @@
 #signup
   %h2 Sign up to use the mass spec
   #signup_form
-    %form{ :action => '\scheduler', :method => 'POST' }
-      #name
-        Name
-        %br
-        %input{ :type => 'text', :name => 'name', :value => @name }
-      #email
-        Email
-        %br
-        %input{ :type => 'text', :name => 'email', :value => @email }
-      #submit
-        %input{ :type => 'submit' }
+    %fieldset 
+      %legend 
+        Signup Form
+      %form{ :action => '\scheduler', :method => 'POST' }
+        .form_element
+          %label{ :for => "name" } Name
+          %br
+          %input{ :type => 'text', :name => 'name', :value => @name }
+        .form_element
+          %label{ :for => "pi" } Principal Investigator
+          %br
+          %input{ :type => "text", :name => "pi", :value => @pi }
+        .form_element
+          %label{ :for => "department" } Department
+          %br
+          %input{ :type => "text", :name => "department", :value => @department }
+        .form_element
+          %label{ :for => "email" } Email
+          %br
+          %input{ :type => 'text', :name => 'email', :value => @email }
+        .form_element
+          %label{ :for => "phone" } Phone Number
+          %br
+          %input{ :type => "text", :name => "phone", :value => @phone }
+        .form_element
+          %label{ :for => "intro" } Have you read the introductory materials at our 
+          %a{ :href => "http://openwetware.org/wiki/Prince:Introduction" }wiki?
+          %br
+          %input{ :type => "checkbox", :name => "intro", :value => @intro } Yes
+        .form_element
+          Does your sample meet the sample requirements (MW Filtered, pH) listed
+          %a{ :href => "http://openwetware.org/wiki/Prince:Introduction#Criteria_for_use", :target => "blank" }here?
+          %br
+          %input{ :type => "checkbox", :name => "sample", :value => @sample } Yes
+        .form_element
+          %label{ :for => "sample_type" } Type of Sample
+          %br
+          = select(:name => "sample_type", :options => sample_type_options)
+        .form_element
+          %label{ :for => "number_of_samples" } Number of samples
+          %br
+          %input{ :type => "text", :name => "number_of_samples", :value => @number_of_samples }
+        .form_element
+          %label{ :for => "sample_origin" } Sample origin
+          %br
+          = select(:name => "sample_origin", :options => sample_origin_options)
+        .form_element
+          %label{ :for => "sample_description" } Description of sample conditions.
+          Please be verbose. We want to know everything we can about what you have done.
+          %br        
+          %textarea{ :name => "sample_description", :cols => 60, :rows => 12 }
+        .form_element
+          %input{ :type => 'submit' }
 
   - if @success
     %h3.success Submission successfully saved.
