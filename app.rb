@@ -1,7 +1,17 @@
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "lib"))
 require "sinatra"
-require './init.rb'
+require "configuration"
+require "queue"
 
+# Edit configuration settings here
+config = Scheduler::Configuration.new
+config.email = "jergason@byu.net"
+config.queue_location = "queue.yaml"
+config.calendar_html = "<foo>bahldlksjf</foo>"
 
+$queue = Scheduler::Queue.new(config.queue_location)
+
+# Routes
 get "/" do
   redirect "/scheduler"
 end
@@ -13,24 +23,25 @@ end
 post "/scheduler" do
   @name = params[:name]
   @email = params[:email]
-  #save it to the yaml file
+  $queue << { :name => @name, :email => @email }
+  $queue.save
   
-  # render the form and show a success message
   @success = true
   haml :scheduler
 end
 
 get "/queue" do
-  #load the queue
-  $queue = load_queue
-  #show the queue list
+  haml :queue
 end
 
 # Delete the selected queue item
 delete "/queue" do
-
+  $queue.delete params[:id]
+  $queue.save
+  haml :queue
 end
 
 get "/calendar" do
+  @calendar = config.calendar_html
   haml :calendar
 end

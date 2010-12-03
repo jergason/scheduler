@@ -1,0 +1,14 @@
+#queue
+  %h2 Queue For Mass Spec
+  - $queue.each_with_index do |sub, i|
+    .sumbission
+      Name: #{sub[:name]} Email: #{sub[:email]} 
+      %form{ :action => "/queue", :method => :post }
+        %input{ :type => "hidden", :name => "_method", :value => "delete"}
+        %input{ :type => "hidden", :name => "id", :value => "#{i}" }
+        %button{ :title => "Delete" }
+          Delete this entry
+    %br
+    %br
+
+
