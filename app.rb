@@ -1,11 +1,12 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "lib"))
 require "sinatra"
-require "queue"
-require "pony"
+require "scheduler"
 require "config/settings"
 
 $queue = Scheduler::Queue.new(settings.queue_location)
+
+helpers Scheduler::Helpers
 
 # Routes
 get "/" do
@@ -17,17 +18,10 @@ get "/scheduler" do
 end
 
 post "/scheduler" do
-  $queue << { :name => @name, :email => @email }
+  $queue << { :name => params[:name], :email => params[:email] }
   $queue.save
 
-  Pony.mail( :to => settings.notification_email_address,
-             :from => settings.email_sender,
-             :subject => "New Signup for Orbitrap",
-             :body => <<-EOF
-  New signup for the Orbitrap from #{params[:name]}, email: #{params[:email]}.
-EOF
-          )
-  
+  Scheduler::Email.mail(params, settings.email_recipient, settings.email_sender)
   @success = true
   haml :scheduler
 end
@@ -36,7 +30,6 @@ get "/queue" do
   haml :queue
 end
 
-# Delete the selected queue item
 delete "/queue" do
   $queue.delete params[:id]
   $queue.save
@@ -48,22 +41,3 @@ get "/calendar" do
   haml :calendar
 end
 
-#Helpers
-helpers do
-  def select(opts={})
-    opts[:title] ||= opts[:name]
-    res = "<select name=\"#{opts[:name]}\" title=\"#{opts[:title]}\">\n"
-    options = opts[:options].inject(res) do |res, option|
-      res << "\t<option value=\"#{option}\">#{option}</option>\n"
-    end
-    options << "</select>\n"
-  end
-
-  def sample_type_options()
-    ["lipid", "protein", "digested protein/peptide", "metabolite"]
-  end
-
-  def sample_origin_options()
-    ["purified protein", "co-immunoprecipitation", "cell/tissue lysates", "plasma", "media"]
-  end
-end
