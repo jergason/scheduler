@@ -44,4 +44,18 @@ describe "Scheduler" do
       end
     end
   end
+
+  describe "/calendar" do
+    describe "get" do
+      it "should be successful" do
+        get "/calendar"
+        last_response.should be_ok
+      end
+
+      it "should show the embedded calendar" do
+        get "/calendar"
+        last_response.body.should =~ /<\/iframe>/
+      end
+    end
+  end
 end
