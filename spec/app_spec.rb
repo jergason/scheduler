@@ -27,6 +27,10 @@ describe "Scheduler" do
       get "/scheduler"
       last_response.body.should =~ /<form/
     end
+
+    context "when submitting a form" do
+      let(:parms) { }
+    end
   end
 
   describe "/" do

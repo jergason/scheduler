@@ -2,7 +2,7 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "lib"))
 require "sinatra"
 require "scheduler"
-require "config/settings"
+require "settings"
 
 $queue = Scheduler::Queue.new(settings.queue_location)
 
@@ -23,7 +23,7 @@ post "/scheduler" do
 
   Scheduler::Email.mail(params, settings.email_recipient, settings.email_sender)
   @success = true
-  haml :scheduler
+  redirect '/scheduler', 303
 end
 
 get "/queue" do
