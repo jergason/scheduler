@@ -1,36 +1,39 @@
-#signup_form em {
-  color: red; }
-
 body {
   font-family: "Courier New", Courier, monospace; }
 
+#container {
+  width: 1000px;
+  margin: auto;
+  background-color: #cce2f7;
+  color: #111d2d; }
+
 #header {
-  background-color: #ccc;
+  background-color: #4a5a73;
+  height: 39px;
   margin: 0em 0em 1em 0em;
   padding: 0em 1em; }
   #header h1 {
-    color: #ffffff;
     padding: 0;
     margin: 0; }
   #header ul#menu {
     margin: 0;
     padding: 0;
-    float: right; }
+    float: right;
+    position: relative;
+    top: -27px; }
     #header ul#menu li {
-      display: inline; }
+      display: inline;
+      float: left; }
       #header ul#menu li a {
-        text-decoration: none;
-        float: left;
-        text-decoration: none;
-        color: #ffffff;
-        background-color: #333;
+        color: #cce2f7;
+        background-color: #4a5a73;
         padding: 10px; }
-      #header ul#menu li:hover {
-        color: #fff;
-        background-color: #0b75b2; }
-      #header ul#menu li:visited {
-        color: #ffffff; }
+        #header ul#menu li a:hover {
+          background-color: #cce2f7;
+          color: #4a5a73; }
 
-#container {
-  width: 1000px;
-  margin: auto; }
+#content {
+  padding: 0px 5px; }
+
+#signup_form em {
+  color: red; }

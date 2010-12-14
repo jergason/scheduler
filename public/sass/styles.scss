@@ -1,21 +1,26 @@
-#signup_form {
-  em {
-    color: red;
-  }
-}
+$light_blue :#cce2f7;
+$dark_blue: #4a5a73;
+$text_color: #111d2d;
 
 body {
   font-family: "Courier New", Courier, monospace;
 }
 
+#container {
+  width: 1000px;
+  margin: auto;
+  background-color: $light_blue;
+  color: $text_color;
+}
+
 #header {
   background: {
-    color: #ccc;
+    color: $dark_blue;
   }
+  height: 39px;
   margin: 0em 0em 1em 0em;
   padding: 0em 1em;
   h1 {
-  color: #ffffff;
   padding: 0;
   margin: 0;
   }
@@ -23,28 +28,30 @@ body {
     margin: 0;
     padding: 0;
     float: right;
+    position: relative;
+    top: -27px;
     li {
       display: inline;
+      float: left;
       a {
-        text-decoration: none;
-        float: left;
-        text-decoration: none;
-        color: #ffffff;
-        background-color: #333;
+        color: $light_blue;
+        background-color: $dark_blue;
         padding: 10px;
-      }
-      &:hover {
-        color: #fff;
-        background-color: #0b75b2;
-      }
-      &:visited {
-        color: #ffffff;
+        &:hover {
+          background-color: $light_blue;
+          color: $dark_blue;
+        }
       }
     }
   }
 }
 
-#container {
-  width: 1000px;
-  margin: auto;
+#content {
+  padding: 0px 5px;
+}
+
+#signup_form {
+  em {
+    color: red;
+  }
 }
