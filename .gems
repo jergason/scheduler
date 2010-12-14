@@ -1,2 +1,11 @@
+http://rubygems.org
+
 sinatra
+rspec
+rack-test
+rake
 haml
+pony
+dm-core
+dm-sqlite-adapter
+dm-postgres-adapter
