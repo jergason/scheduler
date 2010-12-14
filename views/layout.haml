@@ -1,7 +1,21 @@
-%html
+!!! Transitional
+%html{ :lang => "en", :"xml:lang" => "en", :xmlns => "http://www.w3.org/1999/xhtml" }
   %head
+    %meta{ :content => "text/html; charset=utf-8", :"http-equiv" => "Content-Type" }
+    %meta{ :content => "en", :"http-equiv" => "Content-Language" }    
     = haml :scripts_and_styles, :layout => false
     %title Mass Spec Scheduler
   %body
     #container
-      = yield
+      #header
+        %h1
+          Prince Lab Mass Spec Scheduler
+        %ul#menu
+          %li
+            %a{ :href => "/calendar" } Calendar
+          %li
+            %a{ :href => "/schedule" } Schedule A Time
+          %li
+            %a{ :href => "/queue" } Queue
+      #page
+        = yield

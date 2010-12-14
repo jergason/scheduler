@@ -3,3 +3,48 @@
     color: red;
   }
 }
+
+body {
+  font-family: "Courier New", Courier, monospace;
+}
+
+#header {
+  background: {
+    color: #ccc;
+  }
+  margin: 0em 0em 1em 0em;
+  padding: 0em 1em;
+  h1 {
+  color: #ffffff;
+  padding: 0;
+  margin: 0;
+  }
+  ul#menu {
+    margin: 0;
+    padding: 0;
+    float: right;
+    li {
+      display: inline;
+      a {
+        text-decoration: none;
+        float: left;
+        text-decoration: none;
+        color: #ffffff;
+        background-color: #333;
+        padding: 10px;
+      }
+      &:hover {
+        color: #fff;
+        background-color: #0b75b2;
+      }
+      &:visited {
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+#container {
+  width: 1000px;
+  margin: auto;
+}

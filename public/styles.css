@@ -1,2 +1,36 @@
 #signup_form em {
   color: red; }
+
+body {
+  font-family: "Courier New", Courier, monospace; }
+
+#header {
+  background-color: #ccc;
+  margin: 0em 0em 1em 0em;
+  padding: 0em 1em; }
+  #header h1 {
+    color: #ffffff;
+    padding: 0;
+    margin: 0; }
+  #header ul#menu {
+    margin: 0;
+    padding: 0;
+    float: right; }
+    #header ul#menu li {
+      display: inline; }
+      #header ul#menu li a {
+        text-decoration: none;
+        float: left;
+        text-decoration: none;
+        color: #ffffff;
+        background-color: #333;
+        padding: 10px; }
+      #header ul#menu li:hover {
+        color: #fff;
+        background-color: #0b75b2; }
+      #header ul#menu li:visited {
+        color: #ffffff; }
+
+#container {
+  width: 1000px;
+  margin: auto; }

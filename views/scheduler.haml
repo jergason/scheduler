@@ -4,7 +4,7 @@
     %fieldset 
       %legend 
         Signup Form
-      %form{ :action => '\scheduler', :method => 'POST' }
+      %form{ :action => '\scheduler', :method => 'post' }
         .form_element
           %label{ :for => "name" } Name
           %em *
@@ -35,13 +35,15 @@
           %em *
           %a{ :href => "http://openwetware.org/wiki/Prince:Introduction" }wiki?
           %br
-          %input{ :type => "checkbox", :name => "intro", :class => "required" } Yes
+          %input{ :type => "checkbox", :name => "intro", :class => "required" }/
+          Yes
         .form_element
           Does your sample meet the sample requirements (MW Filtered, pH) listed
           %a{ :href => "http://openwetware.org/wiki/Prince:Introduction#Criteria_for_use", :target => "blank" }here?
           %em *
           %br
-          %input{ :type => "checkbox", :name => "sample", :class => "required" } Yes
+          %input{ :type => "checkbox", :name => "sample", :class => "required" }/
+          Yes
         .form_element
           %label{ :for => "sample_type" } Type of Sample
           %em *
