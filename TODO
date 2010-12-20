@@ -1,0 +1,5 @@
+* add calendar page
+* some kind of navigation links
+* Add form validation - server side and client side
+* Add way to view individual submissions?
+  * add a model for them? yup, definitely time to add a model for submissions
