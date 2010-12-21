@@ -9,64 +9,61 @@
           %label{ :for => "name" } Name
           %em *
           %br
-          %input{ :type => 'text', :name => 'name', :class => "required" }
+          %input{ :type => 'text', :name => "submission[name]", :class => "required" }
         .form_element
           %label{ :for => "pi" } Principal Investigator
           %em *
           %br
-          %input{ :type => "text", :name => "pi", :class => "required" }
+          %input{ :type => "text", :name => "submission[pi]", :class => "required" }
         .form_element
           %label{ :for => "department" } Department
           %em *
           %br
-          %input{ :type => "text", :name => "department", :class => "required" }
+          %input{ :type => "text", :name => "submission[department]", :class => "required" }
         .form_element
           %label{ :for => "email" } Email
           %em *
           %br
-          %input{ :type => 'text', :name => 'email', :class => "required" }
+          %input{ :type => 'text', :name => "submission[email]", :class => "required" }
         .form_element
           %label{ :for => "phone" } Phone Number
           %em *
           %br
-          %input{ :type => "text", :name => "phone", :class => "required" }
+          %input{ :type => "text", :name => "submission[phone]", :class => "required" }
         .form_element
           %label{ :for => "intro" } Have you read the introductory materials at our 
           %em *
           %a{ :href => "http://openwetware.org/wiki/Prince:Introduction" }wiki?
           %br
-          %input{ :type => "checkbox", :name => "intro", :class => "required" }/
+          %input{ :type => "checkbox", :name => "submission[intro]", :class => "required" }/
           Yes
         .form_element
           Does your sample meet the sample requirements (MW Filtered, pH) listed
           %a{ :href => "http://openwetware.org/wiki/Prince:Introduction#Criteria_for_use", :target => "blank" }here?
           %em *
           %br
-          %input{ :type => "checkbox", :name => "sample", :class => "required" }/
+          %input{ :type => "checkbox", :name => "submission[sample]", :class => "required" }/
           Yes
         .form_element
           %label{ :for => "sample_type" } Type of Sample
           %em *
           %br
-          = select(:name => "sample_type", :options => sample_type_options)
+          = select(:name => "submission[sample_type]", :options => sample_type_options)
         .form_element
           %label{ :for => "number_of_samples" } Number of samples
           %em *
           %br
-          %input{ :type => "text", :name => "number_of_samples", :class => "required" }
+          %input{ :type => "text", :name => "submission[number_of_samples]", :class => "required" }
         .form_element
           %label{ :for => "sample_origin" } Sample origin
           %em *
           %br
-          = select(:name => "sample_origin", :options => sample_origin_options)
+          = select(:name => "submission[sample_origin]", :options => sample_origin_options)
         .form_element
           %label{ :for => "sample_description" } Description of sample conditions.
           Please be verbose. We want to know everything we can about what you have done.
           %em *
           %br        
-          %textarea{ :name => "sample_description", :cols => 60, :rows => 12 }
+          %textarea{ :name => "submission[sample_description]", :cols => 60, :rows => 12 }
         .form_element
           %input{ :type => 'submit' }
-
-  - if @success
-    %h3.success Submission successfully saved.

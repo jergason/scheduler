@@ -1,5 +1,4 @@
 #Model for submissions
-
 module Scheduler
   class Submission
     include DataMapper::Resource
@@ -14,6 +13,16 @@ module Scheduler
     property :number_of_samples, Integer
     property :sample_origin, String
     property :sample_description, Text
+    property :created_on, DateTime, :default => Time.now
+    property :updated_on, DateTime, :default => Time.now
+    property :display, Boolean, :default => true
 
+    before :save do
+      puts "saving submission!"
+      p self
+      updated_on = Time.now
+    end
   end
 end
+
+DataMapper.finalize

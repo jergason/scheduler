@@ -1,4 +1,9 @@
 # Application settings
+
+#set up datebase information
+require "dm-core"
+DataMapper::Logger.new($stdout, :debug)
+DataMapper.setup(:default, ENV["DATABASE_URL"] || "sqlite:///Users/jergason/Dropbox/prince_lab_stuff/mass_spec_scheduler/scheduler.db")
 set :email_recipient, "change-me@example.com"
 set :email_sender, "scheduler@example.com"
 set :queue_location, "queue.yaml"
