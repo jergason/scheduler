@@ -29,7 +29,26 @@ describe "Scheduler" do
     end
 
     context "when submitting a form" do
-      let(:parms) { }
+      let(:params) do  
+        { 
+          :name => "John Smith",
+          :principal_investigator => "John Smith",
+          :department => "Chemistry",
+          :email => "email@example.com",
+          :phone_number => "111-111-1111",
+          :sample_type => "lipids",
+          :number_of_samples => 4,
+          :sample_origin => "the moon",
+          :sample_description => "A chunk of moon-cheese."
+        }
+      end
+
+      it "should save a valid submission" do
+        submission = Scheduler::Submission.new(params)
+        count = Scheduler::Submission.count
+        submission.save
+        Scheduler::Submission.count.should == count + 1
+      end
     end
   end
 

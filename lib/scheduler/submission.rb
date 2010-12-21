@@ -13,8 +13,8 @@ module Scheduler
     property :number_of_samples, Integer
     property :sample_origin, String
     property :sample_description, Text
-    property :created_on, DateTime, :default => Time.now
-    property :updated_on, DateTime, :default => Time.now
+    property :created_on, DateTime, :default => lambda { |r, p| Time.now }
+    property :updated_on, DateTime, :default => lambda { |r, p| Time.now }
     property :display, Boolean, :default => true
 
     before :save do
