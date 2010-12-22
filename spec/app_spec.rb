@@ -7,6 +7,20 @@ end
 describe "Scheduler" do
   include Rack::Test::Methods
 
+  let(:params) do  
+    { 
+      :name => "John Smith",
+      :principal_investigator => "John Smith",
+      :department => "Chemistry",
+      :email => "email@example.com",
+      :phone_number => "111-111-1111",
+      :sample_type => "lipids",
+      :number_of_samples => 4,
+      :sample_origin => "the moon",
+      :sample_description => "A chunk of moon-cheese."
+    }
+  end
+
   it "should have the correct title" do
     get '/scheduler'
     last_response.should =~ /<title>Mass Spec Scheduler<\/title>/
@@ -29,19 +43,6 @@ describe "Scheduler" do
     end
 
     context "when submitting a form" do
-      let(:params) do  
-        { 
-          :name => "John Smith",
-          :principal_investigator => "John Smith",
-          :department => "Chemistry",
-          :email => "email@example.com",
-          :phone_number => "111-111-1111",
-          :sample_type => "lipids",
-          :number_of_samples => 4,
-          :sample_origin => "the moon",
-          :sample_description => "A chunk of moon-cheese."
-        }
-      end
 
       it "should save a valid submission" do
         count = Scheduler::Submission.count
@@ -68,20 +69,27 @@ describe "Scheduler" do
         get "/queue"
         last_response.should be_ok
       end
+
+      it "should only display submissions set to display" do
+        get "/queue"
+        count = last_response.body.split.select { |i| i =~ /submission/ }.count
+        Scheduler::Submission.count(:display => true).should == count
+      end
     end
 
     context "when issuing a delete request" do
-      let(:sub) { Scheduler::Submission.first(:name => "John Smith") }
+      before do
+        Scheduler::Submission.create(params.merge({ :name => "Bob Cratchit" }))
+      end
+      let(:sub) { Scheduler::Submission.first(:name => "Bob Cratchit") }
       it "should delete an existing entry" do
-        #p sub
         count = Scheduler::Submission.count(:display => true)
-        #p count
         delete "/queue", :id => sub.id
         Scheduler::Submission.count(:display => true).should == count - 1
       end
 
-      after do
-        sub.update(:display => true)
+      after do 
+        sub.destroy!
       end
     end
   end

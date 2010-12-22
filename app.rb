@@ -32,7 +32,7 @@ post "/scheduler" do
 end
 
 get "/queue" do
-  @submissions = Scheduler::Submission.all
+  @submissions = Scheduler::Submission.all(:display => true)
   haml :queue
 end
 

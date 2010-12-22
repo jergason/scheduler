@@ -1,7 +1,7 @@
 #queue
   %h2 Queue For Mass Spec
   - @submissions.each do |sub|
-    .sumbission
+    .submission
       Name: #{sub.name} Email: #{sub.email} 
       %form{ :action => "/queue", :method => :post }
         %input{ :type => "hidden", :name => "_method", :value => "delete"}
@@ -10,5 +10,3 @@
           Delete this entry
     %br
     %br
-
-
