@@ -2,9 +2,12 @@ $LOAD_PATH.unshift(File.dirname(__FILE__)) unless $LOAD_PATH.include? File.dirna
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "lib")) unless $LOAD_PATH.include? File.join(File.dirname(__FILE__), "lib")
 
 require "sinatra"
+require "rack-flash"
 require "settings"
 require "scheduler"
 
+enable :sessions
+use Rack::Flash
 helpers Scheduler::Helpers
 
 # Routes
@@ -28,6 +31,7 @@ post "/scheduler" do
                                           :sample_description => params[:submission][:sample_description])
   @submission.save
   @submission.mail(settings.email_recipient, settings.email_sender)
+  flash[:success] = "Successfully signed up for the mass spec. Keep an eye on your email for more information."
   redirect '/scheduler', 303
 end
 
@@ -39,6 +43,7 @@ end
 delete "/queue" do
   @submission = Scheduler::Submission.get(params[:id])
   @submission.update(:display => false)
+  flash[:success] = "Deleted submission by #{@submission.name}."
   redirect '/queue', 303
 end
 

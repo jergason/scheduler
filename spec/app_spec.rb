@@ -52,6 +52,13 @@ describe "Scheduler" do
         Scheduler::Submission.count.should == count + 1
       end
 
+      it "should display a flash message upon sucessful creation of a submission" do
+        parms = {}
+        parms[:submission] = params
+        post "/scheduler", parms
+        last_response.body.should =~ /Successfully signed up for the mass spec./i
+      end
+
       it "should save a valid submission" do
         count = Scheduler::Submission.count
         submission = Scheduler::Submission.create(params)

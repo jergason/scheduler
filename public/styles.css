@@ -36,5 +36,17 @@ body {
 #content {
   padding: 0px 5px; }
 
+.error, .notice, .warning, .success {
+  margin-bottom: 1em;
+  padding: 0.8em;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ddd; }
+
+.success {
+  background-color: #e6efc2;
+  color: #529214;
+  border-color: #c6d880; }
+
 #signup_form em {
   color: red; }
