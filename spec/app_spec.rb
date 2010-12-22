@@ -44,10 +44,13 @@ describe "Scheduler" do
       end
 
       it "should save a valid submission" do
-        submission = Scheduler::Submission.new(params)
         count = Scheduler::Submission.count
-        submission.save
+        submission = Scheduler::Submission.create(params)
         Scheduler::Submission.count.should == count + 1
+      end
+
+      after do
+        Scheduler::Submission.last.destroy
       end
     end
   end
@@ -60,10 +63,25 @@ describe "Scheduler" do
   end
 
   describe "/queue" do
-    describe "get" do
+    context "when issuing a get request" do
       it "should be successful" do
         get "/queue"
         last_response.should be_ok
+      end
+    end
+
+    context "when issuing a delete request" do
+      let(:sub) { Scheduler::Submission.first(:name => "John Smith") }
+      it "should delete an existing entry" do
+        #p sub
+        count = Scheduler::Submission.count(:display => true)
+        #p count
+        delete "/queue", :id => sub.id
+        Scheduler::Submission.count(:display => true).should == count - 1
+      end
+
+      after do
+        sub.update(:display => true)
       end
     end
   end

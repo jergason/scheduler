@@ -18,8 +18,6 @@ module Scheduler
     property :display, Boolean, :default => true
 
     before :save do
-      puts "saving submission!"
-      p self
       updated_on = Time.now
     end
   end

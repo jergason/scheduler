@@ -33,15 +33,13 @@ end
 
 get "/queue" do
   @submissions = Scheduler::Submission.all
-  p @submissions
   haml :queue
 end
 
 delete "/queue" do
-  @submission = Scheduler::Submission.find(:id => params[:submission][:id])
-  @submission.display = false
-  @submission.save
-  haml :queue
+  @submission = Scheduler::Submission.get(params[:id])
+  @submission.update(:display => false)
+  redirect '/queue', 303
 end
 
 get "/calendar" do
