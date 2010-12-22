@@ -27,7 +27,7 @@ post "/scheduler" do
                                           :sample_origin => params[:submission][:sample_origin],
                                           :sample_description => params[:submission][:sample_description])
   @submission.save
-  Scheduler::Email.mail(params, settings.email_recipient, settings.email_sender)
+  @submission.mail(settings.email_recipient, settings.email_sender)
   redirect '/scheduler', 303
 end
 
