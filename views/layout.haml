@@ -18,4 +18,6 @@
           %li
             %a{ :href => "/queue" } Queue
       #content
+        #notice
+          = flash[:notice]
         = yield

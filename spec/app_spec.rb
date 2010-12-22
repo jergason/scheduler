@@ -43,6 +43,14 @@ describe "Scheduler" do
     end
 
     context "when submitting a form" do
+      it "should work" do
+        count = Scheduler::Submission.count(:display => true)
+        parms = {}
+        parms[:submission] = params
+        post "/scheduler", parms
+        last_response.status.should == 303
+        Scheduler::Submission.count.should == count + 1
+      end
 
       it "should save a valid submission" do
         count = Scheduler::Submission.count
