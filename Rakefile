@@ -27,6 +27,25 @@ namespace :db do
     require "dm-migrations"
   end
 
+  desc "create the database and point the db driver at it"
+  task :init => [:require, :create, :location] do
+
+  end
+
+  task :create do
+
+  end
+
+  desc "point the test database driver to a database file located at [path]"
+  task :location, :path do |t, args|
+    location = args[:path]
+    p location
+    config_file = File.readlines(File.join(File.dirname(__FILE__), "settings.rb"))
+    setup = config_file.find { |i| i =~ /DataMapper.setup\(:default/ }
+    setup.gsub!(/sqlite[^\\]*/, location.to_s)
+    puts setup
+  end
+
   desc "create the tables to match schema, wiping out existing tables"
   task :migrate => :require do
     DataMapper.auto_migrate!
