@@ -5,7 +5,7 @@ require "dm-core"
 require "dm-aggregates"
 #DataMapper::Logger.new($stdout, :debug)
 DataMapper.setup(:default, ENV["DATABASE_URL"] || "sqlite:///Users/jergason/Dropbox/prince_lab_stuff/mass_spec_scheduler/scheduler.db")
-set :email_recipient, "jergason@gmail.com"
+set :email_recipient, "remucnairomirnoham@gmail.com"
 set :email_sender, "scheduler@chem.byu.edu"
 set :email_username, ENV["SENDGRID_USERNAME"]
 set :email_password, ENV["SENDGRID_PASSWORD"]
