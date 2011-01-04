@@ -22,14 +22,7 @@ module Scheduler
       Pony.mail(:to => to.to_s,
                 :from => from.to_s,
                 :subject => "New Signup for The Orbitrap",
-                :body => "#{name} (email: #{email}) has signed up to use the orbitrap.
-Principal Investigator: #{principal_investigator}
-Department: #{department}
-Phone Number: #{phone_number}
-Sample Type: #{sample_type}
-Number of Samples: #{number_of_samples}
-Sample Origin: #{sample_origin}
-Sample Description: #{sample_description}",
+                :body => "#{name} (email: #{email}) has signed up to use the orbitrap.",
                 :port => settings.email_port,
                 :via => :smtp,
                 :via_options => {
