@@ -35,16 +35,16 @@ post "/scheduler" do
   redirect '/scheduler', 303
 end
 
-get "/queue" do
+get "/submissions" do
   @submissions = Scheduler::Submission.all(:display => true)
-  haml :queue
+  haml :submissions
 end
 
-delete "/queue" do
+delete "/submissions" do
   @submission = Scheduler::Submission.get(params[:id])
   @submission.update(:display => false)
   flash[:success] = "Deleted submission by #{@submission.name}."
-  redirect '/queue', 303
+  redirect '/submissions', 303
 end
 
 get "/calendar" do

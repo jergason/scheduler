@@ -78,15 +78,15 @@ describe "Scheduler" do
     end
   end
 
-  describe "/queue" do
+  describe "/submissions" do
     context "when issuing a get request" do
       it "should be successful" do
-        get "/queue"
+        get "/submissions"
         last_response.should be_ok
       end
 
       it "should only display submissions set to display" do
-        get "/queue"
+        get "/submissions"
         count = last_response.body.split.select { |i| i =~ /submission/ }.count
         Scheduler::Submission.count(:display => true).should == count
       end
@@ -99,7 +99,7 @@ describe "Scheduler" do
       let(:sub) { Scheduler::Submission.first(:name => "Bob Cratchit") }
       it "should delete an existing entry" do
         count = Scheduler::Submission.count(:display => true)
-        delete "/queue", :id => sub.id
+        delete "/submissions", :id => sub.id
         Scheduler::Submission.count(:display => true).should == count - 1
       end
 
