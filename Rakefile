@@ -7,16 +7,6 @@ RSpec::Core::RakeTask.new do |t|
   t.pattern = "spec/*_spec.rb"
 end
 
-desc "update the .gems file for heroku to include gems in Gemfile"
-task :update_gems_file do
-  gems = IO.readlines("Gemfile")
-  File.open(".gems", "w") do |file|
-    gems.each do |line|
-      file.puts line.split("\"")[1]
-    end
-  end
-end
-
 namespace :db do
 
   task :require do
