@@ -3,6 +3,8 @@
   - @submissions.each do |sub|
     .submission
       Name: #{sub.name} Email: #{sub.email} 
+      %a{ :href => submission_link(sub) }
+        View
       %form{ :action => "/submissions", :method => :post }
         %input{ :type => "hidden", :name => "_method", :value => "delete"}
         %input{ :type => "hidden", :name => "id", :value => "#{sub.id}" }

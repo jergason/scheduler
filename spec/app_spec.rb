@@ -53,9 +53,10 @@ describe "Scheduler" do
       end
 
       it "should display a flash message upon sucessful creation of a submission" do
-        parms = {}
-        parms[:submission] = params
-        post "/scheduler", parms
+        new_submission = {}
+        new_submission[:submission] = params
+        post "/scheduler", new_submission
+        follow_redirect!
         last_response.body.should =~ /Successfully signed up for the mass spec./i
       end
 

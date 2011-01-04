@@ -40,6 +40,11 @@ get "/submissions" do
   haml :submissions
 end
 
+get "/submissions/:id" do
+  @submission = Scheduler::Submission.get(params[:id])
+  haml :submission
+end
+
 delete "/submissions" do
   @submission = Scheduler::Submission.get(params[:id])
   @submission.update(:display => false)
