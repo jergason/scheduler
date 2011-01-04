@@ -21,7 +21,7 @@ module Scheduler
     def mail(to, from, options={})
       Pony.mail(:to => to.to_s,
                 :from => from.to_s,
-                :subject => "New Signup for The Orbitrap",
+                :subject => "New Signup for the Orbitrap",
                 :body => "#{name} (email: #{email}) has signed up to use the orbitrap.
 Principal Investigator: #{principal_investigator}
 Department: #{department}

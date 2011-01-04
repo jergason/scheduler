@@ -9,12 +9,16 @@ module Scheduler
       options << "</select>\n"
     end
 
-    def sample_type_options()
+    def sample_type_options
       ["lipid", "protein", "digested protein/peptide", "metabolite"]
     end
 
-    def sample_origin_options()
+    def sample_origin_options
       ["purified protein", "co-immunoprecipitation", "cell/tissue lysates", "plasma", "media"]
+    end
+
+    def submission_link(submission)
+      "/submissions/#{submission.id}"
     end
   end
 end

@@ -53,9 +53,10 @@ describe "Scheduler" do
       end
 
       it "should display a flash message upon sucessful creation of a submission" do
-        parms = {}
-        parms[:submission] = params
-        post "/scheduler", parms
+        new_submission = {}
+        new_submission[:submission] = params
+        post "/scheduler", new_submission
+        follow_redirect!
         last_response.body.should =~ /Successfully signed up for the mass spec./i
       end
 
@@ -78,15 +79,15 @@ describe "Scheduler" do
     end
   end
 
-  describe "/queue" do
+  describe "/submissions" do
     context "when issuing a get request" do
       it "should be successful" do
-        get "/queue"
+        get "/submissions"
         last_response.should be_ok
       end
 
       it "should only display submissions set to display" do
-        get "/queue"
+        get "/submissions"
         count = last_response.body.split.select { |i| i =~ /submission/ }.count
         Scheduler::Submission.count(:display => true).should == count
       end
@@ -99,7 +100,7 @@ describe "Scheduler" do
       let(:sub) { Scheduler::Submission.first(:name => "Bob Cratchit") }
       it "should delete an existing entry" do
         count = Scheduler::Submission.count(:display => true)
-        delete "/queue", :id => sub.id
+        delete "/submissions", :id => sub.id
         Scheduler::Submission.count(:display => true).should == count - 1
       end
 
