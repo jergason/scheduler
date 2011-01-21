@@ -11,6 +11,14 @@
           %br
           %input{ :type => 'text', :name => "submission[name]", :class => "required" }
         .form_element
+          %label{ :for => "date" } Date you want to use the mass spec
+          %br
+          %input{ :type => "text", :name => "submission[date]", :class => "date" }
+        .form_element
+          %label{ :for => "time" } Times that would work for you
+          %br
+          %input{ :type => "text", :name => "submission[time]", :class => "time" }
+        .form_element
           %label{ :for => "pi" } Principal Investigator
           %em *
           %br
@@ -65,13 +73,5 @@
           %em *
           %br        
           %textarea{ :name => "submission[sample_description]", :cols => 60, :rows => 12 }
-        .form_element
-          %label{ :for => "date" } Date
-          %br
-          %input{ :type => "text", :name => "submission[date]", :class => "date" }
-        .form_element
-          %label{ :for => "time" } Time
-          %br
-          %input{ :type => "text", :name => "submission[time]", :class => "time" }
         .form_element
           %input{ :type => 'submit' }
