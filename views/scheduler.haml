@@ -66,4 +66,12 @@
           %br        
           %textarea{ :name => "submission[sample_description]", :cols => 60, :rows => 12 }
         .form_element
+          %label{ :for => "date" } Date
+          %br
+          %input{ :type => "text", :name => "submission[date]", :class => "date" }
+        .form_element
+          %label{ :for => "time" } Time
+          %br
+          %input{ :type => "text", :name => "submission[time]", :class => "time" }
+        .form_element
           %input{ :type => 'submit' }
