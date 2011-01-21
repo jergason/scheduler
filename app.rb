@@ -31,7 +31,6 @@ post "/scheduler" do
                                           :sample_description => params[:submission][:sample_description],
                                           :date => params[:submission][:date],
                                           :time => params[:submission][:time])
-  p @submission
   if @submission.save
     @submission.mail(settings.email_recipient, settings.email_sender)
     flash[:success] = "Successfully signed up for the mass spec. Keep an eye on your email for more information."
