@@ -14,6 +14,8 @@ module Scheduler
     property :number_of_samples, Integer
     property :sample_origin, String
     property :sample_description, Text
+    property :date, String
+    property :time, String
     property :created_on, DateTime, :default => lambda { |r, p| Time.now }
     property :updated_on, DateTime, :default => lambda { |r, p| Time.now }
     property :display, Boolean, :default => true
@@ -23,6 +25,8 @@ module Scheduler
                 :from => from.to_s,
                 :subject => "New Signup for the Orbitrap",
                 :body => "#{name} (email: #{email}) has signed up to use the orbitrap.
+Date: #{date}
+Time: #{time}
 Principal Investigator: #{principal_investigator}
 Department: #{department}
 Phone Number: #{phone_number}

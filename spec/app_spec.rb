@@ -17,7 +17,9 @@ describe "Scheduler" do
       :sample_type => "lipids",
       :number_of_samples => 4,
       :sample_origin => "the moon",
-      :sample_description => "A chunk of moon-cheese."
+      :sample_description => "A chunk of moon-cheese.",
+      :date => "01/25/11",
+      :time => "10:00 am"
     }
   end
 
@@ -40,6 +42,16 @@ describe "Scheduler" do
     it "should show a form" do
       get "/scheduler"
       last_response.body.should =~ /<form/
+    end
+
+    it "should have a date element" do
+      get "/scheduler"
+      last_response.body.should =~ /<input class='date'/
+    end
+
+    it "should have a time element" do
+      get "/scheduler"
+      last_response.body.should =~ /input class='time'/
     end
 
     context "when submitting a form" do

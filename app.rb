@@ -28,10 +28,16 @@ post "/scheduler" do
                                           :sample_type => params[:submission][:sample_type],
                                           :number_of_samples => params[:submission][:number_of_samples],
                                           :sample_origin => params[:submission][:sample_origin],
-                                          :sample_description => params[:submission][:sample_description])
-  @submission.save
-  @submission.mail(settings.email_recipient, settings.email_sender)
-  flash[:success] = "Successfully signed up for the mass spec. Keep an eye on your email for more information."
+                                          :sample_description => params[:submission][:sample_description],
+                                          :date => params[:submission][:date],
+                                          :time => params[:submission][:time])
+  p @submission
+  if @submission.save
+    @submission.mail(settings.email_recipient, settings.email_sender)
+    flash[:success] = "Successfully signed up for the mass spec. Keep an eye on your email for more information."
+  else
+    flash[:error] = "There was an error creating your signup. Whoops!"
+  end
   redirect '/scheduler', 303
 end
 
