@@ -100,7 +100,7 @@ describe "Scheduler" do
 
       it "should only display submissions set to display" do
         get "/submissions"
-        count = last_response.body.split.select { |i| i =~ /submission/ }.count
+        count = last_response.body.split.select { |i| i =~ /['"]submission['"]/ }.count
         Scheduler::Submission.count(:display => true).should == count
       end
     end
